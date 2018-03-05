@@ -23,11 +23,26 @@ public class Helpers {
 
         }
     }
-    public static ArrayList<Joukkue> createAllObjects(int number, Joukkue joukkue){
+    public static ArrayList<Joukkue> createAllObjectsJoukkue(int number){
         ArrayList<Joukkue> lista = new ArrayList<Joukkue>();
         for (int i=0;i<number; i++){
             lista.add(new Joukkue());
         }
         return lista;
     }
+    public static ArrayList<Kierros> createAllObjectsKierros(int number){
+        ArrayList<Kierros> lista = new ArrayList<Kierros>();
+        for (int i=0;i<number; i++){
+            lista.add(new Kierros());
+        }
+        return lista;
+    }
+    public static ArrayList<Peli> createAllObjectsPeli(int number){
+        ArrayList<Peli> lista = new ArrayList<Peli>();
+        for (int i=0;i<number; i++){
+            lista.add(new Peli());
+        }
+        return lista;
+    }
+
 }
