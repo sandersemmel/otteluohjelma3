@@ -11,9 +11,14 @@ public class Helpers {
             System.out.println(arvo);
         }
     }
-    public static void tulostaArrayList(ArrayList<Joukkue> tulostettavaArrayLista){
+    public static void tulostaArrayListJoukkue(ArrayList<Joukkue> tulostettavaArrayLista){
         for (Joukkue joukkue: tulostettavaArrayLista){
             System.out.println(joukkue.getId());
+        }
+    }
+    public static void tulostaKaikkiMatsit(ArrayList<Matsi> tulostettavaMatsiLista){
+        for(Matsi matsi: tulostettavaMatsiLista){
+            matsi.tulostaYksittainenMatsi();
         }
     }
 }
