@@ -15,6 +15,11 @@ public class KierrosRepository implements Repository<Kierros>{
     }
 
     @Override
+    public ArrayList<Kierros> getArrayList() {
+        return kierrosList;
+    }
+
+    @Override
     public void add(Kierros kierros) {
     }
 
@@ -26,5 +31,12 @@ public class KierrosRepository implements Repository<Kierros>{
     @Override
     public void update(Kierros kierros) {
 
+    }
+    public void createAll(int number){
+        ArrayList<Kierros> lista = new ArrayList<Kierros>();
+        for (int i=0;i<number; i++){
+            lista.add(new Kierros());
+        }
+        this.kierrosList = lista;
     }
 }

@@ -10,6 +10,11 @@ public class JoukkueRepository implements Repository<Joukkue>{
         joukkueList.add(joukkue);
     }
 
+    @Override
+    public ArrayList<Joukkue> getArrayList() {
+        return joukkueList;
+    }
+
     public void add(Joukkue joukkue){
     }
     public void update(Joukkue joukkue){
@@ -23,8 +28,12 @@ public class JoukkueRepository implements Repository<Joukkue>{
                 System.out.println(joukkue.getId());
         }
     }
-    public void createAll(){
-
+    public void createAll(int number){
+        ArrayList<Joukkue> lista = new ArrayList<Joukkue>();
+        for (int i=0;i<number; i++){
+            lista.add(new Joukkue());
+        }
+        this.joukkueList = lista;
     }
 }
 

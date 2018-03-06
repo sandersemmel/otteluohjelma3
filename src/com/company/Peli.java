@@ -3,7 +3,7 @@ package com.company;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
-public class Peli {
+public class Peli implements GenericInterface {
     private static int counter = 0;
     private int peliId;
     private ArrayList<Joukkue> peli = new ArrayList<Joukkue>();
@@ -14,19 +14,27 @@ public class Peli {
 
 
     public Peli(){
-        peli.add(new Joukkue());
-        peli.add(new Joukkue());
         this.peliId = counter++;
     }
 
     public void tulostapelinJoukkueet(){
-        Helpers.tulostaArrayListJoukkue(peli);
+        Helpers.tulostaArrayListJoukkueenId(peli);
     }
     public void tulostaYksittainenpeli(){
-        Helpers.tulostaArrayListJoukkue(peli);
+        Helpers.tulostaArrayListJoukkueenId(peli);
     }
     public int getpeliId(){
         return this.peliId;
+    }
+
+    @Override
+    public int getId() {
+        return this.peliId;
+    }
+
+    @Override
+    public int setId() {
+        return 0;
     }
 
 }
