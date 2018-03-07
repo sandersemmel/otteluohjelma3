@@ -37,10 +37,19 @@ public class Helpers {
     }
     public static void tulostaArrayListanArrayLista(ArrayList<ArrayList<Joukkue>> lista){
         int counter = 0;
-        for(ArrayList<Joukkue> j: lista){
-            System.out.println(j.get(0).getId());
-            counter++;
+        for(ArrayList<Joukkue> joukkueArray: lista){
+            for(int i=0; i<joukkueArray.size(); i+=2){
+                    Joukkue ensimmainenJoukkue = joukkueArray.get(i);
+                    Joukkue toinenJoukkue = joukkueArray.get(i+1);
+
+
+                    System.out.println( "Ensimmäisen joukkueen id: " + " " +
+                                        ensimmainenJoukkue.getId()   + " " +
+                                        "Toisen joukkueen id: " +
+                                        toinenJoukkue.getId());
+
+                }
+            }
         }
     }
 
-}
