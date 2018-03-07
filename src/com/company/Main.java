@@ -25,7 +25,7 @@ public class Main {
 
         /*Arvonta olio arpoo*/
 
-        Arvonta ArvotutPelit =  new Arvonta(j.getArrayList(),k.getArrayList(),p.getArrayList());
+        Arvonta ArvotutPelit =  new Arvonta(j.getArrayList(),k.getArrayList(),p.getArrayList(),true);
         ArvotutPelit.arvoJoukkueetPeleihin();
         ArrayList<ArrayList<Joukkue>> ensimmainenEra = ArvotutPelit.getYksittaisetPelit();
 
