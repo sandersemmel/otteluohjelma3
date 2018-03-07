@@ -11,6 +11,9 @@ public class Peli implements GenericInterface {
     private int[] pelinJoukkueetArray = new int[1];
     private int joukkueMaara = 2;
     private int pelimaara = 131;
+    private Joukkue ensimmainenJoukkue;
+    private Joukkue toinenJoukkue;
+
 
 
     public Peli(){

@@ -12,7 +12,7 @@ public class Arvonta {
     private ArrayList<Kierros> arvotutKierrokset = new ArrayList<>();
     private Joukkue pelinEnsimmainenJoukkue;
     private Joukkue pelinToinenJoukkue;
-    private List<Joukkue> yksittaisetPelit = new ArrayList<Joukkue>();
+    private ArrayList<ArrayList<Joukkue>> yksittaisetPelit = new ArrayList<ArrayList<Joukkue>>();
 
     /**/
     private int joukkueidenMaara;
@@ -44,10 +44,14 @@ public class Arvonta {
                     if(toisenJoukkueenId >= joukkueidenMaara){
                         break;
                     }else {
-                        Joukkue ensimmainen = joukkueet.get(i);
-                        Joukkue toinen = joukkueet.get(toisenJoukkueenId);
-                        yksittaisetPelit.add(ensimmainen);
-                        yksittaisetPelit.add(toinen);
+                        this.pelinEnsimmainenJoukkue = joukkueet.get(i);
+                        this.pelinToinenJoukkue = joukkueet.get(toisenJoukkueenId);
+
+                        ArrayList<Joukkue> yksittainenPeliArray = new ArrayList<Joukkue>();
+                        yksittainenPeliArray.add(pelinEnsimmainenJoukkue);
+                        yksittainenPeliArray.add(pelinToinenJoukkue);
+
+                        yksittaisetPelit.add(yksittainenPeliArray);
                         toisenJoukkueenId++;
                     }
                 }
@@ -55,7 +59,7 @@ public class Arvonta {
             toisenJoukkueenId = 0;
         }
     }
-    public List<Joukkue> getYksittaisetPelit(){
+    public ArrayList<ArrayList<Joukkue>> getYksittaisetPelit(){
         return yksittaisetPelit;
     }
 }

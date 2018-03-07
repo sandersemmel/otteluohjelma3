@@ -3,6 +3,12 @@ package com.company;
 import java.util.ArrayList;
 import java.util.List;
 
+
+/*
+* Huomioitavaa, tuleeko ongelma jos pelin 0 ja pelin 132 joukkueID on sama Joukkue@1b6d3586?
+*
+* */
+
 public class Main {
 
     public static void main(String[] args) {
@@ -21,9 +27,10 @@ public class Main {
 
         Arvonta ArvotutPelit =  new Arvonta(j.getArrayList(),k.getArrayList(),p.getArrayList());
         ArvotutPelit.arvoJoukkueetPeleihin();
-        List<Joukkue> yksittaisetPelit = ArvotutPelit.getYksittaisetPelit();
-        Helpers.tulostaListJoukkue(ArvotutPelit.getYksittaisetPelit());
-        System.out.println("kek");
-        System.out.println(yksittaisetPelit.size());
+        ArrayList<ArrayList<Joukkue>> ensimmainenEra = ArvotutPelit.getYksittaisetPelit();
+
+
+        Helpers.tulostaArrayListanArrayLista(ensimmainenEra);
+
     }
 }

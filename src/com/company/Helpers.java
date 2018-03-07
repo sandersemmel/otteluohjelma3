@@ -24,5 +24,23 @@ public class Helpers {
             System.out.println(joukkue.getId());
         }
     }
+    public static void tulostaYksittainenPeli(List<Joukkue> lista, int index){
+        System.out.println(lista.get(index).getId() + "  "  + lista.get(index));
+        System.out.println(lista.get(index+1).getId() + "  "  + lista.get(index+1));
+    }
+    public static void tulostaKaikkiPelit(List<Joukkue> lista){
+        int peliNumero = 0 ;
+        for(int i=0;i<lista.size();i+=2){
+            System.out.println("Peli" + peliNumero + "[" + lista.get(i).getId() + " " + lista.get(i+1).getId() + "]");
+            peliNumero++;
+        }
+    }
+    public static void tulostaArrayListanArrayLista(ArrayList<ArrayList<Joukkue>> lista){
+        int counter = 0;
+        for(ArrayList<Joukkue> j: lista){
+            System.out.println(j.get(0).getId());
+            counter++;
+        }
+    }
 
 }
