@@ -4,7 +4,7 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class Joukkue implements GenericInterface{
+public class Joukkue {
     private static int counter = 0;
     private int joukkueenId;
     private int joukkueRankkari;
