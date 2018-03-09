@@ -2,6 +2,7 @@ package com.company;
 
 
 import java.util.ArrayList;
+import java.util.List;
 
 public interface Repository<T extends GenericInterface> {
     void add(T entity);
@@ -12,6 +13,6 @@ public interface Repository<T extends GenericInterface> {
 
     void create(T entity);
 
-    ArrayList<?> getArrayList();
+    List<?> getArrayList();
 
 }
