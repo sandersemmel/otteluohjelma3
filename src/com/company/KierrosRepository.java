@@ -11,6 +11,7 @@ import java.util.Random;
 public class KierrosRepository implements Repository<Kierros>{
     private List<Peli> kierroksenPelit = new ArrayList<>();
     private List<Peli> peliLista = new ArrayList<Peli>();
+    private List<Kierros> kierrokset = new ArrayList<>();
     private int peliMaara;
     private int kierrosMaara;
 
@@ -56,11 +57,27 @@ public class KierrosRepository implements Repository<Kierros>{
             this.kierroksenPelit.add(peli);
         }
     }
+    public void createAll2(){
+        /***
+         * Lisaa pelille random KierrosId:n ja laittaa sen kierroksenPelit listalle.
+         * */
+        for (int i=0;i<peliMaara; i++){
+            Random R = new Random();
+            int random = R.nextInt(22);
+            Peli peli = peliLista.get(i);
+            peli.setKierrosId(random);
+            Kierros kierros = new Kierros(peli);
+            kierrokset.add(kierros);
+        }
+    }
     public List<Peli> getKierrokset(){
         return kierroksenPelit;
     }
 
     public void jarjesta(){
         Collections.sort(kierroksenPelit, new Jarjesta());
+    }
+    public List<Kierros> getKierroksetJaPelit2(){
+        return kierrokset;
     }
 }

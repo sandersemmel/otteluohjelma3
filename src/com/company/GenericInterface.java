@@ -5,5 +5,5 @@ import java.util.ArrayList;
 
 public interface GenericInterface {
     public int getId();
-    public int setId();
+    public void setId(int id);
 }

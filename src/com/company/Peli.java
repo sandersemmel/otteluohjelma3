@@ -37,6 +37,11 @@ public class Peli implements GenericInterface {
     }
 
     @Override
+    public void setId(int id) {
+
+    }
+
+
     public int setId() {
         return 0;
     }
