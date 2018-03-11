@@ -1,7 +1,6 @@
 package com.company;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 
 /*
@@ -24,44 +23,56 @@ public class Main {
         List<Peli> peliListaKierroksilla = k.getKierrokset();
 
 
-        for(int i = 0; i < peliListaKierroksilla.size(); i++){
-            peliListaKierroksilla.sort();
 
-            Peli peli = peliListaKierroksilla.get(0);
-                peli.getPelinKierrosId(i);
-            }
-        }
+        // Otetetaan ensimmäinen kierros ja siltä kierrokselta satunnainen peli
+        // Käydään kaikki kierrokset läpi ja valitaan se kierros jossa rankkarit vähenevät eniten ja siirretään peli sinne
+        // Mikäli kuitenkin löytyy useampi kierros jossa rankkarit vähenevät yhtä paljon, arvotaan näiden väliltä kohdekierros
+
+//        Peli peli = peliListaKierroksilla.get(0).getPelinKierrosId(0);
+//        List<Peli> pelitsortattuna = peliListaKierroksilla.stream().sorted(());
+//
+//
+//            Collections.sort(peliListaKierroksilla, peliListaKierroksilla.get(0).getPelinKierrosId(0));
+//            peliListaKierroksilla.sort();
+
+
+//
+//
+//        Jarjesta jarjesta = new Jarjesta(peliListaKierroksilla);
+//        jarjesta.
+//
+//        List<Peli> pelilista = new ArrayList<>();
+//        arvoRandomKierros(pelilista); // palauttaa random Pelin
+//        arvoSiirrettavaPeli(Peli); // palauttaa
+//        laskerankkarit(pelilista); // palauttaa kierrosId:n jolla on isoin rankkarimäärä
 
 
 
+//        for(Peli peli: peliListaKierroksilla){
+//            System.out.println(peli.getPelinKierrosId());
+//        }
 
+
+        //peliListaKierroksilla.sort(Comparator.comparing(x-> x.getPelinKierrosId()));
+
+
+//        for(int i = 0; i < peliListaKierroksilla.size(); i++){
+//
+//            Peli peli = peliListaKierroksilla.get(0);
+//                peli.getPelinKierrosId(i);
+//            }
+
+        Collections.sort(peliListaKierroksilla, new Jarjesta());
 
         for(Peli peli: peliListaKierroksilla){
             System.out.println("Pelin Id:" + peli.getId() + "Pelin KierrosId:" + peli.getPelinKierrosId() +
-                                "Pelin joukkueet " + peli.getEnsimmainenJoukkue() + "  " + peli.getToinenJoukkue() );
+                    "Pelin joukkueet " + peli.getEnsimmainenJoukkue() + "  " + peli.getToinenJoukkue() );
         }
 
+        
+
         /*Testing setting pelirankkari*/
-        Joukkue j1 = new Joukkue();
-        Joukkue j2 = new Joukkue();
-        Peli peli = new Peli(j1,j2);
 
-
-
-        System.out.println(peli.getPeliRankkari());
-        peli.addPeliRankkari();
-        System.out.println(peli.getPeliRankkari());
-        peli.addPeliRankkari();
-        System.out.println(peli.getPeliRankkari());
-        peli.addPeliRankkari();
-        System.out.println(peli.getPeliRankkari());
-
-
-
-
-
-
-        System.out.println("Hello");
         /*Luodaan Joukkue, Peli ja Kierros-oliot */
 
 

@@ -88,4 +88,11 @@ public class PeliRepository implements Repository<Peli>{
         return this.pelit;
     }
 
+
+//    public Peli void getRankkaritForKierros(int kierros){
+//        for(Peli p : pelit){
+//            p.getPelinKierrosId()
+//        }
+//    }
+
 }
