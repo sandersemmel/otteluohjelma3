@@ -1,6 +1,7 @@
 package com.company;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -49,7 +50,7 @@ public class KierrosRepository implements Repository<Kierros>{
          * */
         for (int i=0;i<peliMaara; i++){
             Random R = new Random();
-            int random = R.nextInt(22)+1;
+            int random = R.nextInt(22);
             Peli peli = this.peliLista.get(i);
             peli.setKierrosId(random);
             this.kierroksenPelit.add(peli);
@@ -59,4 +60,7 @@ public class KierrosRepository implements Repository<Kierros>{
         return kierroksenPelit;
     }
 
+    public void jarjesta(){
+        Collections.sort(kierroksenPelit, new Jarjesta());
+    }
 }

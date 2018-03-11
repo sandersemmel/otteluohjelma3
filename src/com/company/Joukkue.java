@@ -19,4 +19,5 @@ public class Joukkue implements GenericInterface {
         return 0;
     }
 
+
 }

@@ -2,6 +2,7 @@ package com.company;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Peli implements GenericInterface {
     private static int counter = 0;
@@ -60,6 +61,10 @@ public class Peli implements GenericInterface {
     public int getPelinKierrosId(int id){
         return this.kierrosId;
     }
+    public List<Joukkue> getPelinJoukkueet(){
+        return this.pelinJoukkueet;
+    }
+
 
 }
 
