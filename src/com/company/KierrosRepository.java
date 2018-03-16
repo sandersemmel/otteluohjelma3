@@ -54,7 +54,10 @@ public class KierrosRepository implements Repository<Kierros>{
             Random R = new Random();
             int random = R.nextInt(22);
             Peli peli = this.peliLista.get(i);
+            Kierros kierros = new Kierros();
+
             peli.setKierrosId(random);
+
             this.kierroksenPelit.add(peli);
         }
     }
@@ -65,8 +68,8 @@ public class KierrosRepository implements Repository<Kierros>{
         for (int i=0;i<peliMaara; i++){
             Random R = new Random();
             int random = R.nextInt(22);
+
             Peli peli = peliLista.get(i);
-            peli.setKierrosId(random);
             Kierros kierros = new Kierros(peli);
             kierrokset.add(kierros);
         }

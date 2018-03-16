@@ -61,8 +61,8 @@ public class PeliRepository implements Repository<Peli>{
         int counter = 0;
         int toisenJoukkueenId = 0;
         while(counter < this.eraMaara){
-            for (int i = 0; i<joukkueidenMaara; i++){
-                toisenJoukkueenId = (i + 1);
+            for (int joukkue = 0; joukkue<joukkueidenMaara; joukkue++){
+                toisenJoukkueenId = (joukkue + 1);
                 if(toisenJoukkueenId > joukkueidenMaara){
                     break;
                 }else{
@@ -71,7 +71,7 @@ public class PeliRepository implements Repository<Peli>{
                             break;
                         }else {
 
-                            pelinEnsimmainenJoukkue = joukkueet.get(i);
+                            pelinEnsimmainenJoukkue = joukkueet.get(joukkue);
                             pelinToinenJoukkue = joukkueet.get(toisenJoukkueenId);
                             Peli peli = new Peli(pelinEnsimmainenJoukkue,pelinToinenJoukkue);
                             pelit.add(peli);
