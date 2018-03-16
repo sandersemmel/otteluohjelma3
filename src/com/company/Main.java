@@ -46,108 +46,247 @@ public class Main {
         List<Joukkue> joukkueidenLista = j.getArrayList();
 
 
-        // what about otetaan kierros ja lasketaan kuinka monta joukkuetta siellä on ja annetaan joka kerta piste kun joukkue esiintyy
 
-        for (int i = 0; i < kierrostenMaara; i++) {
-            System.out.println("Kierros: " + i);
-            for (int e = 0; e < kaikkipelit.size(); e++) {
-                if (kaikkipelit.get(e).getPelinKierrosId() == i) {
-                    int ekanjoukkueenRankkari = 0;
-                    int tokanjoukkueenRankkari = 0;
-                    Joukkue eka = kaikkipelit.get(e).getEnsimmainenJoukkue();
-                    Joukkue toka = kaikkipelit.get(e).getToinenJoukkue();
 
-                    System.out.println("eka: " + eka.getId());
-                    System.out.println("toka: " + toka.getId());
 
-                    ekanjoukkueenRankkari++;
-                    tokanjoukkueenRankkari++;
+        
 
-                    /*Jos joukkue jo löytyy niin päivitetään sen rankkarimäärä, muuten lisätään joukkue ja rankkari*/
-                    if (kierroksenJoukkueet.containsKey(eka)) {
-                        kierroksenJoukkueet.put(eka, kierroksenJoukkueet.get(ekanjoukkueenRankkari++));
+        for (int o = 0; o < kierrostenMaara; o++) {
+            HashMap<Joukkue, Integer> hashemi = new HashMap<>();
+            for (int i = 0; i < kaikkipelit.size(); i++) {
+                if (kaikkipelit.get(i).getPelinKierrosId() == o) {
+                    int ekanPiste = 0;
+                    int tokanPiste = 0;
+
+                    Joukkue eka = kaikkipelit.get(i).getEnsimmainenJoukkue();
+                    Joukkue toka = kaikkipelit.get(i).getToinenJoukkue();
+
+                    ekanPiste = ekanPiste + 1;
+                    tokanPiste = tokanPiste + 1;
+
+                    // Tarkistetaan löytyykö joukkue jo hashemi hashmapista
+                    if (hashemi.get(eka) != null && hashemi.containsKey(eka)) {
+                        hashemi.put(eka, hashemi.get(eka) + ekanPiste);
                     } else {
-                        if (kierroksenJoukkueet.containsKey(toka)) {
-                            kierroksenJoukkueet.put(toka, kierroksenJoukkueet.get(tokanjoukkueenRankkari++));
-                        } else {
-                            kierroksenJoukkueet.put(eka, ekanjoukkueenRankkari);
-                            kierroksenJoukkueet.put(toka, tokanjoukkueenRankkari);
-                        }
-
+                        hashemi.put(eka, ekanPiste);
                     }
 
 
-                }
-                else{
-                    /*Jos kierroksella ei ole enempää joukkueita, lasketaan joukkuekohtaiset rankkarit ja pelikohtaiset rankkarit?*/
-                    for(int y= 0; y<kierroksenJoukkueet.size(); y++){
-                        for(int l=0; l<joukkueidenLista.size(); l++){
-                            Joukkue joukkue = joukkueidenLista.get(l);
-                                if(kierroksenJoukkueet.get(joukkue)!= null && kierroksenJoukkueet.containsKey(joukkue)){
-                                    int arvo = kierroksenJoukkueet.get(joukkue);
-                                        if(arvo == 1){
-                                            /*Joukkue ei saa rankkaria, koska se esiintyy vain kerran kierroksella*/
-                                        }else{
-                                            /*Joukkue saa rangaistuksen, koska se esiintyy useammin kui kerran */
-                                            kaikkipelit.get(e).getPelinJoukkue(joukkue.getId()).incrementJoukkueRankkari();
-                                        }
-                                }
-                                else{
-                                    kaikkipelit.get(e).getPelinJoukkue(joukkue.getId()).incrementJoukkueRankkari();
-                                }
-                        }
+                    if (hashemi.get(toka) != null && hashemi.containsKey(toka)) {
+                        hashemi.put(toka, hashemi.get(toka) + tokanPiste);
+                    } else {
+                        hashemi.put(toka, tokanPiste);
                     }
+                } else {
+                    for (int n = 0; n < hashemi.size(); n++) {
+                        for (int s = 0; s < kaikkipelit.size(); s++) {
+                            if (kaikkipelit.get(o).getPelinKierrosId() == o) {
+                                Joukkue eka = kaikkipelit.get(o).getEnsimmainenJoukkue();
+                                Joukkue toka = kaikkipelit.get(o).getToinenJoukkue();
 
-                }
-            }
-        }
+                                if (hashemi.get(eka) != null && hashemi.containsKey(eka)) {
+                                    // Jos hashmapista löytyy pelilistan enismmäinen joukkue
+                                    int ekanEsiintymisKerrat = hashemi.get(eka);
+                                    if (ekanEsiintymisKerrat == 1) {
+                                        // Ei lisätä rankkaria
+                                    } else {
+                                        kaikkipelit.get(o).getEnsimmainenJoukkue().incrementJoukkueRankkari();
 
-
-
-
-
-
-
-
-
-
-        for (int i = 0; i < kierrostenMaara; i++) { // Otetaan eka kierros
-            int joukkueenRankkari = 0;
-                for (int g = 0; g < kaikkipelit.get(g).getJoukkeidenMaaraPerPeli(); g++) { // Eka tiimi pelistä
-                    for (int z = 0; z < kaikkipelit.size(); z++) {
-                        Joukkue vertailtava = kaikkipelit.get(z).getPelinJoukkue(g);
-                        int vertailtavanId = vertailtava.getId();
-
-                        for(int x = 0; x < kaikkipelit.size(); x++){
-                            if (kaikkipelit.get(z).getPelinKierrosId(z) == i) {
-                                if (vertailtavanId == kaikkipelit.get(x).getEnsimmainenJoukkueId() ||
-                                        vertailtavanId == kaikkipelit.get(x).getToinenJoukkueId()) {
-                                    joukkueenRankkari++;
-                                }
-                            }else {
-                                if (joukkueenRankkari == joukkueEsiintyyKerran) {
-                                    // Joukkue ei saa rankkaria
+                                    }
                                 } else {
-                                    vertailtava.setJoukkueRankkari(rangaistus);
+                                    if (hashemi.get(toka) != null && hashemi.containsValue(toka)) {
+                                        int tokanEsiintymiskerta = hashemi.get(toka);
+                                        if (tokanEsiintymiskerta == 1) {
+                                            //Ei lisätä rankkaria
+                                        } else {
+                                            kaikkipelit.get(o).getToinenJoukkue().incrementJoukkueRankkari();
+                                        }
+                                    }
                                 }
                             }
                         }
-
                     }
                 }
-
             }
+        }
 
-                for(Peli peli: kaikkipelit){
+        for (Peli peli : kaikkipelit) {
 
             System.out.println("Pelin Id:" + peli.getId() + "Pelin KierrosId:" + peli.getPelinKierrosId() +
-                    "Joukkue #1  " + peli.getEnsimmainenJoukkue().getId() + "Rankkari: " + peli.getEnsimmainenJoukkue().getJoukkueRankkari()+ "  " +
-                    "Joukkue #2  "  + peli.getToinenJoukkue().getId() + "Rankkari" + peli.getToinenJoukkue().getJoukkueRankkari());
+                    "Joukkue #1  " + peli.getEnsimmainenJoukkue().getId() + "Rankkari: " + peli.getEnsimmainenJoukkue().getJoukkueRankkari() + "  " +
+                    "Joukkue #2  " + peli.getToinenJoukkue().getId() + "Rankkari" + peli.getToinenJoukkue().getJoukkueRankkari());
         }
     }
+}
 
-
-    }
+//
+//
+//        // what about otetaan kierros ja lasketaan kuinka monta joukkuetta siellä on ja annetaan joka kerta piste kun joukkue esiintyy
+//
+//        for (int i = 0; i < kierrostenMaara; i++) {
+//            System.out.println("Kierros: " + i);
+//            for (int e = 0; e < kaikkipelit.size(); e++) {
+//                if (kaikkipelit.get(e).getPelinKierrosId() == i) {
+//                    int ekanjoukkueenRankkari = 0;
+//                    int tokanjoukkueenRankkari = 0;
+//                    Joukkue eka = kaikkipelit.get(e).getEnsimmainenJoukkue();
+//                    Joukkue toka = kaikkipelit.get(e).getToinenJoukkue();
+//
+//                    System.out.println("eka: " + eka.getId());
+//                    System.out.println("toka: " + toka.getId());
+//
+//                    ekanjoukkueenRankkari++;
+//                    tokanjoukkueenRankkari++;
+//
+//                    /*Jos joukkue jo löytyy niin päivitetään sen rankkarimäärä, muuten lisätään joukkue ja rankkari*/
+//                    if (kierroksenJoukkueet.containsKey(eka)) {
+//                        kierroksenJoukkueet.put(eka, kierroksenJoukkueet.get(ekanjoukkueenRankkari++));
+//                    } else {
+//                        if (kierroksenJoukkueet.containsKey(toka)) {
+//                            kierroksenJoukkueet.put(toka, kierroksenJoukkueet.get(tokanjoukkueenRankkari++));
+//                        } else {
+//                            kierroksenJoukkueet.put(eka, ekanjoukkueenRankkari);
+//                            kierroksenJoukkueet.put(toka, tokanjoukkueenRankkari);
+//                        }
+//
+//                    }
+//
+//
+//                }
+//                else{
+//                    /*Jos kierroksella ei ole enempää joukkueita, lasketaan joukkuekohtaiset rankkarit ja pelikohtaiset rankkarit?*/
+//                    for(int y= 0; y<kierroksenJoukkueet.size(); y++){
+//                        for(int l=0; l<joukkueidenLista.size(); l++){
+//                            Joukkue joukkue = joukkueidenLista.get(l);
+//                                if(kierroksenJoukkueet.get(joukkue)!= null && kierroksenJoukkueet.containsKey(joukkue)){
+//                                    int arvo = kierroksenJoukkueet.get(joukkue);
+//                                        if(arvo == 1){
+//                                            /*Joukkue ei saa rankkaria, koska se esiintyy vain kerran kierroksella*/
+//                                        }else{
+//                                            /*Joukkue saa rangaistuksen, koska se esiintyy useammin kui kerran */
+//                                            kaikkipelit.get(e).getPelinJoukkue(joukkue.getId()).incrementJoukkueRankkari();
+//                                        }
+//                                }
+//                                else{
+//                                    kaikkipelit.get(e).getPelinJoukkue(joukkue.getId()).incrementJoukkueRankkari();
+//                                }
+//                        }
+//                    }
+//
+//                }
+//            }
+//        }
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//        for (int i = 0; i < kierrostenMaara; i++) { // Otetaan eka kierros
+//            int joukkueenRankkari = 0;
+//                for (int g = 0; g < kaikkipelit.get(g).getJoukkeidenMaaraPerPeli(); g++) { // Eka tiimi pelistä
+//                    for (int z = 0; z < kaikkipelit.size(); z++) {
+//                        Joukkue vertailtava = kaikkipelit.get(z).getPelinJoukkue(g);
+//                        int vertailtavanId = vertailtava.getId();
+//
+//                        for(int x = 0; x < kaikkipelit.size(); x++){
+//                            if (kaikkipelit.get(z).getPelinKierrosId(z) == i) {
+//                                if (vertailtavanId == kaikkipelit.get(x).getEnsimmainenJoukkueId() ||
+//                                        vertailtavanId == kaikkipelit.get(x).getToinenJoukkueId()) {
+//                                    joukkueenRankkari++;
+//                                }
+//                            }else {
+//                                if (joukkueenRankkari == joukkueEsiintyyKerran) {
+//                                    // Joukkue ei saa rankkaria
+//                                } else {
+//                                    vertailtava.setJoukkueRankkari(rangaistus);
+//                                }
+//                            }
+//                        }
+//
+//                    }
+//                }
+//
+//            }
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//        for (int i = 0; i < kierrostenMaara; i++) { // Otetaan eka kierros
+//            int joukkueenRankkari = 0;
+//            for (int g = 0; g < kaikkipelit.get(g).getJoukkeidenMaaraPerPeli(); g++) { // Eka tiimi pelistä
+//                for (int z = 0; z < kaikkipelit.size(); z++) {
+//                    Joukkue vertailtava = kaikkipelit.get(z).getPelinJoukkue(g);
+//                    int vertailtavanId = vertailtava.getId();
+//
+//                    for(int x = 0; x < kaikkipelit.size(); x++){
+//                        if (kaikkipelit.get(z).getPelinKierrosId(z) == i) {
+//                            if (vertailtavanId == kaikkipelit.get(x).getEnsimmainenJoukkueId() ||
+//                                    vertailtavanId == kaikkipelit.get(x).getToinenJoukkueId()) {
+//                                joukkueenRankkari++;
+//                            }
+//                        }else {
+//                            if (joukkueenRankkari == joukkueEsiintyyKerran) {
+//                                // Joukkue ei saa rankkaria
+//                            } else {
+//                                vertailtava.setJoukkueRankkari(rangaistus);
+//                            }
+//                        }
+//                    }
+//
+//                }
+//            }
+//
+//        }
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//                for(Peli peli: kaikkipelit){
+//
+//            System.out.println("Pelin Id:" + peli.getId() + "Pelin KierrosId:" + peli.getPelinKierrosId() +
+//                    "Joukkue #1  " + peli.getEnsimmainenJoukkue().getId() + "Rankkari: " + peli.getEnsimmainenJoukkue().getJoukkueRankkari()+ "  " +
+//                    "Joukkue #2  "  + peli.getToinenJoukkue().getId() + "Rankkari" + peli.getToinenJoukkue().getJoukkueRankkari());
+//        }
+//    }
+//
+//
+//    }
 
         /*Jos joukkue löytyy kierroksen pelien listalta niin silloin sille lisätään rankkari*/
 //        for(Peli peli: k.getKierrokset()){
