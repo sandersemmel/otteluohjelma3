@@ -40,6 +40,9 @@ public class JoukkueRepository implements Repository<Joukkue>{
     public List<Joukkue> getJoukkueet(){
         return joukkueList;
     }
+    public void paivitaJoukkueenRankkari(int id){
+        this.joukkueList.get(id).incrementJoukkueRankkari();
+    }
 }
 
 

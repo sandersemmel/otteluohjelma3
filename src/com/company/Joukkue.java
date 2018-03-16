@@ -15,9 +15,23 @@ public class Joukkue implements GenericInterface {
     public int getId(){
         return this.joukkueenId;
     }
+
+    @Override
+    public void setId(int id) {
+
+    }
+
     public int setId(){
         return 0;
     }
-
+    public void setJoukkueRankkari(int rankkari){
+        this.joukkueRankkari = rankkari;
+    }
+    public void incrementJoukkueRankkari(){
+        this.joukkueRankkari = joukkueRankkari+1;
+    }
+    public int getJoukkueRankkari(){
+        return this.joukkueRankkari;
+    }
 
 }

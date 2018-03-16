@@ -10,6 +10,7 @@ public class Peli implements GenericInterface {
     private ArrayList<Joukkue> pelinJoukkueet = new ArrayList<Joukkue>();
     private Joukkue ensimmainenJoukkue;
     private Joukkue toinenJoukkue;
+    private int joukkueidenMaaraPelissa;
     private int kierrosId;
     private int peliRankkari;
 
@@ -19,6 +20,7 @@ public class Peli implements GenericInterface {
         this.toinenJoukkue = toinenJoukkue;
         pelinJoukkueet.add(this.ensimmainenJoukkue);
         pelinJoukkueet.add(this.toinenJoukkue);
+        this.joukkueidenMaaraPelissa = pelinJoukkueet.size();
     }
 
     public void tulostapelinJoukkueet(){
@@ -45,11 +47,17 @@ public class Peli implements GenericInterface {
     public int setId() {
         return 0;
     }
-    public int getEnsimmainenJoukkue(){
+    public int getEnsimmainenJoukkueId(){
         return ensimmainenJoukkue.getId();
     }
-    public int getToinenJoukkue(){
+    public int getToinenJoukkueId(){
         return toinenJoukkue.getId();
+    }
+    public Joukkue getEnsimmainenJoukkue(){
+        return this.ensimmainenJoukkue;
+    }
+    public Joukkue getToinenJoukkue(){
+        return this.toinenJoukkue;
     }
     public void setKierrosId(int kierrosId){
         this.kierrosId = kierrosId;
@@ -69,7 +77,13 @@ public class Peli implements GenericInterface {
     public List<Joukkue> getPelinJoukkueet(){
         return this.pelinJoukkueet;
     }
+    public Joukkue getPelinJoukkue (int id){
 
+        return this.pelinJoukkueet.get(id);
+    }
+    public int getJoukkeidenMaaraPerPeli(){
+        return this.joukkueidenMaaraPelissa;
+    }
 
 }
 
