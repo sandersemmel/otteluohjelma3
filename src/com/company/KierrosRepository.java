@@ -46,34 +46,28 @@ public class KierrosRepository implements Repository<Kierros>{
     public void update(Kierros kierros) {
 
     }
-    public void createAll(){
-        /***
-         * Lisaa pelille random KierrosId:n ja laittaa sen kierroksenPelit listalle.
-         * */
-        for (int i=0;i<peliMaara; i++){
-            Random R = new Random();
-            int random = R.nextInt(22);
-            Peli peli = this.peliLista.get(i);
-            Kierros kierros = new Kierros();
 
-            peli.setKierrosId(random);
-
-            this.kierroksenPelit.add(peli);
+    public void createKierrokset(){
+        for (int kierros = 0; kierros < kierrosMaara; kierros++){
+            Kierros uusiKierros = new Kierros();
+            kierrokset.add(uusiKierros);
         }
     }
-    public void createAll2(){
-        /***
-         * Lisaa pelille random KierrosId:n ja laittaa sen kierroksenPelit listalle.
-         * */
+
+
+    public void createAll(){
+        // Tehdään kaikki 22 kierrosta ja lisätään niille sitten aina pelit
         for (int i=0;i<peliMaara; i++){
             Random R = new Random();
-            int random = R.nextInt(22);
+            int randomKierrosId = R.nextInt(22);
 
             Peli peli = peliLista.get(i);
-            Kierros kierros = new Kierros(peli);
-            kierrokset.add(kierros);
+
+            kierrokset.get(randomKierrosId).addPeliToKierros(peli);
+
         }
     }
+
     public List<Peli> getKierrokset(){
         return kierroksenPelit;
     }
@@ -85,3 +79,4 @@ public class KierrosRepository implements Repository<Kierros>{
         return kierrokset;
     }
 }
+

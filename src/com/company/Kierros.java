@@ -14,11 +14,8 @@ public class Kierros implements GenericInterface{
 
     private Map<Joukkue, Integer> rankkarit;
 
-    public Kierros(Peli peli){
+    public Kierros(){
         this.kierrosId = counter++;
-        this.kierroksenPelit.add(peli);
-
-
     }
 
     public int getId(){
@@ -29,5 +26,8 @@ public class Kierros implements GenericInterface{
     }
     public List<Peli> getKierroksenPelit(){
         return this.kierroksenPelit;
+    }
+    public void addPeliToKierros(Peli peli){
+        kierroksenPelit.add(peli);
     }
 }
