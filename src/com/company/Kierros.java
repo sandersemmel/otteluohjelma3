@@ -12,6 +12,7 @@ public class Kierros implements GenericInterface{
     private int kierrosId;
     private List<Peli> kierroksenPelit = new ArrayList<>();
     private List<Joukkue> kierroksenJoukkueet = new ArrayList<>();
+    private List<Joukkue> kaikkiJoukkueet = new ArrayList<>();
 
 
     private Map<Joukkue, Integer> rankkarit;
@@ -36,6 +37,9 @@ public class Kierros implements GenericInterface{
     public List<Joukkue> getKierroksenJoukkueet(){
         return this.kierroksenJoukkueet;
     }
+    public void addKaikkiJoukkueet(List<Joukkue> joukkueet){
+        this.kaikkiJoukkueet = joukkueet;
+    }
     private void addJoukkueetKierroksenOmaanListaan(){
         for(int peliIndex=0;peliIndex<kierroksenPelit.size(); peliIndex++){
             Joukkue eka = kierroksenPelit.get(peliIndex).getEnsimmainenJoukkue();
@@ -44,4 +48,8 @@ public class Kierros implements GenericInterface{
             kierroksenJoukkueet.add(toka);
         }
     }
+    public Joukkue getKierroksellaEiEsiintyväJoukkue(int id){
+         return this.kaikkiJoukkueet.get(id);
+    }
+
 }

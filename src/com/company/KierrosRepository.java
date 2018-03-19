@@ -16,7 +16,7 @@ public class KierrosRepository implements Repository<Kierros>{
     private int peliMaara;
     private int kierrosMaara;
 
-    public KierrosRepository(int kierrosMaara, List<Peli> peliLista){
+    public KierrosRepository(int kierrosMaara, List<Peli> peliLista, List<Joukkue> kaikkiJoukkueet){
         this.kierrosMaara = kierrosMaara;
         this.peliLista = peliLista;
         this.peliMaara = peliLista.size();
@@ -51,6 +51,7 @@ public class KierrosRepository implements Repository<Kierros>{
     public void createKierrokset(){
         for (int kierros = 0; kierros < kierrosMaara; kierros++){
             Kierros uusiKierros = new Kierros();
+            uusiKierros.addKaikkiJoukkueet(this.kaikkiJoukkueet);
             kierrokset.add(uusiKierros);
         }
     }

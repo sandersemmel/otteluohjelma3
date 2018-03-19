@@ -19,23 +19,26 @@ public class Main {
         PeliRepository p = new PeliRepository(j.getJoukkueet(), true);
         p.createAll();
 
-        KierrosRepository k = new KierrosRepository(22, p.getPelit());
+        KierrosRepository k = new KierrosRepository(22, p.getPelit(),j.getJoukkueet());
         k.createKierrokset();
         k.createAll();
 
 
         k.jarjesta();
-        List<Kierros> kierroksetPeleineen= k.getKierrokset();
+
+
+
+
+        List<Kierros> kierroksetPeleineen = k.getKierrokset();
         /*Rankkareiden laskeminen*/
 
 
-
-        for(int kierros = 0; kierros<kierroksetPeleineen.size(); kierros++){
+        for (int kierros = 0; kierros < kierroksetPeleineen.size(); kierros++) {
             List<Peli> kierroksenPelit = kierroksetPeleineen.get(0).getKierroksenPelit();
-            HashMap<Joukkue, Integer> JoukkueJaRankkari= new HashMap<>();
+            HashMap<Joukkue, Integer> JoukkueJaRankkari = new HashMap<>();
             int joukkueEsiintyyKerran = 1;
 
-            for(int peli = 0; peli<kierroksenPelit.size(); peli++){
+            for (int peli = 0; peli < kierroksenPelit.size(); peli++) {
                 Joukkue pelinEnsimmainenJoukkue = kierroksenPelit.get(peli).getEnsimmainenJoukkue();
                 Joukkue pelinToinenJoukkue = kierroksenPelit.get(peli).getToinenJoukkue();
 
@@ -48,60 +51,60 @@ public class Main {
                 kierroksenPelit.get(peli).getEnsimmainenJoukkue();
                 kierroksenPelit.get(peli).getToinenJoukkue();
 
-                if(JoukkueJaRankkari.containsKey(pelinEnsimmainenJoukkue)){
+                if (JoukkueJaRankkari.containsKey(pelinEnsimmainenJoukkue)) {
                     JoukkueJaRankkari.putIfAbsent(pelinEnsimmainenJoukkue, JoukkueJaRankkari.get(pelinEnsimmainenJoukkue) + 1);
-                }else{
-                    JoukkueJaRankkari.put(pelinEnsimmainenJoukkue,ekanRankkari);
+                } else {
+                    JoukkueJaRankkari.put(pelinEnsimmainenJoukkue, ekanRankkari);
                 }
 
-                if(JoukkueJaRankkari.containsKey(pelinToinenJoukkue)){
-                    JoukkueJaRankkari.putIfAbsent(pelinToinenJoukkue,JoukkueJaRankkari.get(pelinToinenJoukkue) + 1);
-                }else{
-                    JoukkueJaRankkari.put(pelinToinenJoukkue,tokanRankkari);
+                if (JoukkueJaRankkari.containsKey(pelinToinenJoukkue)) {
+                    JoukkueJaRankkari.putIfAbsent(pelinToinenJoukkue, JoukkueJaRankkari.get(pelinToinenJoukkue) + 1);
+                } else {
+                    JoukkueJaRankkari.put(pelinToinenJoukkue, tokanRankkari);
                 }
 
             }
             /*Kuinka monta kertaa joukkue esiintyy kierroksella*/
-            for(Map.Entry<Joukkue,Integer> map : JoukkueJaRankkari.entrySet()){
-                 int tarkasteltavaJoukkueId = map.getKey().getId();
-                 int value = map.getValue();
+            for (Map.Entry<Joukkue, Integer> map : JoukkueJaRankkari.entrySet()) {
+                int tarkasteltavaJoukkueId = map.getKey().getId();
+                int value = map.getValue();
 
-                if(value == joukkueEsiintyyKerran){
+                if (value == joukkueEsiintyyKerran) {
                     // Ei lisätä rankkaria, koska Joukkue esiintyy vain kerran kierroksella
-                }
-                else{
+                } else {
                     kierroksenPelit.get(kierros).getPelinJoukkue(tarkasteltavaJoukkueId).incrementJoukkueRankkari();
                 }
             }
             /*Jos joukkue ei esiinny kierroksella, se saa rankkarin*/
-            for(Joukkue joukkue : j.getJoukkueet()){
-                if(JoukkueJaRankkari.containsKey(joukkue)){
+            for (Joukkue joukkue : j.getJoukkueet()) {
+                if (JoukkueJaRankkari.containsKey(joukkue)) {
                     // Joukkue on jo saanut rankkarin Kierrokselta
-                }
-                else{
-                    kierroksetPeleineen.get(kierros).
+                } else {
+                    // Lisää joukkuelle rankkarin, joka ei esiinny kierroksella, nämä joukkueet ovat omassa listassaan Kierros luokassa
+                    Kierros nykyinenKierros = kierroksetPeleineen.get(kierros);
+                    Joukkue kierroksenJoukkue = nykyinenKierros.getKierroksellaEiEsiintyväJoukkue(joukkue.getId());
+                    kierroksenJoukkue.incrementJoukkueRankkari();
                 }
             }
-
 
 
         }
 
+        for(Kierros kierros : kierroksetPeleineen){
+            System.out.println("Kierros: " + kierros.getId());
+        }
 
 
 
-
-
-
-
-
-        Collections.sort(k.getKierrokset(), new Comparator<Peli>() {
-            public int compare(Peli p1, Peli p2) {
-                return Integer.valueOf(p1.getPelinKierrosId()).compareTo(p2.getPelinKierrosId());
-            }
-        });
     }
+
 }
+
+
+
+
+
+
 
 
 
