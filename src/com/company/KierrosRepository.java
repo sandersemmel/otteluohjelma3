@@ -12,6 +12,7 @@ public class KierrosRepository implements Repository<Kierros>{
     private List<Peli> kierroksenPelit = new ArrayList<>();
     private List<Peli> peliLista = new ArrayList<Peli>();
     private List<Kierros> kierrokset = new ArrayList<>();
+    private List<Joukkue> kaikkiJoukkueet = new ArrayList<>();
     private int peliMaara;
     private int kierrosMaara;
 
@@ -68,15 +69,14 @@ public class KierrosRepository implements Repository<Kierros>{
         }
     }
 
-    public List<Peli> getKierrokset(){
-        return kierroksenPelit;
-    }
-
     public void jarjesta(){
         Collections.sort(kierroksenPelit, new Jarjesta());
     }
-    public List<Kierros> getKierroksetJaPelit2(){
+    public List<Kierros> getKierrokset(){
         return kierrokset;
+    }
+    public void AddKaikkiJoukkueet(List<Joukkue> joukkueet){
+        this.kaikkiJoukkueet = joukkueet;
     }
 }
 

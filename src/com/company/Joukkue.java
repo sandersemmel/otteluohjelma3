@@ -2,12 +2,14 @@ package com.company;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class Joukkue implements GenericInterface {
     private static int counter = 0;
     private int joukkueenId;
     private int joukkueRankkari;
+    private HashMap<Kierros,Integer> kierrosJaRankkari = new HashMap<>();
 
     public Joukkue(){
         this.joukkueenId = counter++;
@@ -34,4 +36,7 @@ public class Joukkue implements GenericInterface {
         return this.joukkueRankkari;
     }
 
+    public void setKierrosJaRankkariJoukkueelle(Kierros kierros,int rankkari){
+        this.kierrosJaRankkari.put(kierros,rankkari);
+    }
 }
