@@ -90,8 +90,17 @@ public class Main {
 
         }
 
-        for(Kierros kierros : kierroksetPeleineen){
-            System.out.println("Kierros: " + kierros.getId());
+
+        for(int kierros = 0; kierros < kierroksetPeleineen.size(); kierros++){
+            System.out.println("Kierros: " + kierroksetPeleineen.get(kierros).getId());
+
+            for(int peli = 0; peli < kierroksetPeleineen.get(kierros).getKierroksenPelit().size(); peli++){
+                System.out.println("Peli " + kierroksetPeleineen.get(kierros).getKierroksenPelit().get(peli).getId() + "  " +
+                                   "Joukkue: " + kierroksetPeleineen.get(kierros).getKierroksenPelit().get(peli).getEnsimmainenJoukkue().getId() + "  " +
+                                    "Rankkari: " + kierroksetPeleineen.get(kierros).getKierroksenPelit().get(peli).getEnsimmainenJoukkue().getJoukkueRankkari() + "  " +
+                                    "Joukkue: " + kierroksetPeleineen.get(kierros).getKierroksenPelit().get(peli).getToinenJoukkue().getId() + "  " +
+                                    "Rankkari: " + kierroksetPeleineen.get(kierros).getKierroksenPelit().get(peli).getToinenJoukkue().getJoukkueRankkari());
+            }
         }
 
 

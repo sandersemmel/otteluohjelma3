@@ -20,6 +20,7 @@ public class KierrosRepository implements Repository<Kierros>{
         this.kierrosMaara = kierrosMaara;
         this.peliLista = peliLista;
         this.peliMaara = peliLista.size();
+        this.kaikkiJoukkueet = kaikkiJoukkueet;
     }
 
 
