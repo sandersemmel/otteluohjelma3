@@ -43,7 +43,7 @@ public class Main {
                 Joukkue pelinToinenJoukkue = kierroksenPelit.get(peli).getToinenJoukkue();
 
                 int ensimmainsenJoukkueenId = pelinEnsimmainenJoukkue.getId();
-                int toisenJoukkueenId = pelinEnsimmainenJoukkue.getId();
+                int toisenJoukkueenId = pelinToinenJoukkue.getId();
 
                 int ekanRankkari = joukkueEsiintyyKerran;
                 int tokanRankkari = joukkueEsiintyyKerran;
